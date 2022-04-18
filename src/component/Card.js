@@ -13,7 +13,7 @@ const Card = () => {
         <div className="section-1">
           <h1>Md Irfan Khan</h1>
           <p>Full stack Developer</p>
-          <p>Link</p>
+          {/* <p>Link</p> */}
         </div>
       </div>
 

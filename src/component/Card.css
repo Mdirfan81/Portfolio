@@ -3,6 +3,7 @@
   scroll-behavior: smooth;
   font-family: "Montserrat", sans-serif;
 }
+
 .card-Wrapper {
   min-width: 200px;
   max-width: 400px;
@@ -31,6 +32,7 @@ img {
 .section-1 {
   display: inline-block;
   justify-content: center;
+  text-align: center;
 }
 .link {
   color: white;
