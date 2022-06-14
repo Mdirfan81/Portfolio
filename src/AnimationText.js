@@ -6,13 +6,13 @@ import "./App.css";
 const AnimationText = () => {
   return (
     <Container>
-      <section class="rotatingText">
-        <div class="rotatingText-content">
-          <h1 class="rotatingText-description">
+      <section className="rotatingText">
+        <div className="rotatingText-content">
+          <h1 className="rotatingText-description">
             HELLO <span className="wave">👋</span>
           </h1>
-          <h3 class="rotatingText-adjective">You're</h3>
-          <h3 class="rotatingText-adjective">
+          <h3 className="rotatingText-adjective">You're</h3>
+          <h3 className="rotatingText-adjective">
             Awesome<span className="wave secondEmoji">👌</span>
           </h3>
         </div>
