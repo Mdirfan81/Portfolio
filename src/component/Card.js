@@ -45,7 +45,8 @@ const Card = () => {
         <a
           className="link"
           target="_blank"
-          href="https://drive.google.com/file/d/1bHY8BtEG9xz9FiF7Vi-SJyJy9I0xdsil/view?usp=sharing"
+          // href="https://drive.google.com/file/d/1bHY8BtEG9xz9FiF7Vi-SJyJy9I0xdsil/view?usp=sharing"
+          href="https://drive.google.com/file/d/1WHlrQuT8nVcJE6UIthERZRe1dg4UZlFk/view?usp=sharing"
         >
           <IoNewspaper size="20" />
           <span>Resume</span>
