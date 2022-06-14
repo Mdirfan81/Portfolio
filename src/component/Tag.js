@@ -24,6 +24,8 @@ const TagContainer = styled.div`
   justify-content: center;
   align-items: center;
   letter-spacing: 2px;
+  /* border: 5px linear-gradient(to right, red, orange); */
+
   &:hover {
     border: 1px;
     transform: scale(1.2);

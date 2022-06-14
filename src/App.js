@@ -72,6 +72,7 @@ function App() {
 
 const MainContainer = styled.div`
   height: 100vh;
+  width: 100vw;
   color: #fff;
   background: -webkit-linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%),
     -webkit-radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%);
@@ -84,6 +85,10 @@ const MainContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 844px) {
+    height: 100%;
+  }
 `;
 
 const Header = styled.h1`
