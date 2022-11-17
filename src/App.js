@@ -1,12 +1,36 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
-import Card from "./component/Card";
 import styled from "styled-components";
+
+import "./App.css";
+import Black from "./images/Black.jpg";
+
+import Card from "./component/Card";
 import Blogs from "./Blogs";
 import AnimationText from "./AnimationText";
 import Tag from "./component/Tag";
+import SwitchToDark from "./component/SwitchToDark";
+import Projects from "./component/Projects";
+
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  let skillArr = [
+    "JavaScript",
+    "React JS",
+    "Redux / Redux Toolkit",
+    "Bootstrap",
+    "Git",
+    "Figma",
+    " Styled Components",
+    "Node JS",
+    "Express JS",
+    " Mongo DB",
+    "HTML",
+    "CSS",
+    "JQuery",
+    " Rest API",
+    "Adobe XD",
+  ];
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -18,74 +42,78 @@ function App() {
       clearTimeout(timer);
     };
   }, []);
+  function handleMode() {
+    setIsDarkMode((prev) => !prev);
+  }
   return (
     <React.Fragment>
       {isLoading ? (
         <AnimationText />
       ) : (
-        <MainContainer>
+        <div>
+          <MainContainer isDarkMode={isDarkMode}>
+            <Container>
+              <ProfileBox>
+                <Card handleMode={handleMode} isDarkMode={isDarkMode} />
+              </ProfileBox>
+              <DetailBox>
+                <OtherDetails>
+                  <Header> RECENTLY PUBLISHED </Header>
+                  <Blogs
+                    title="What is MongoDB Trigger?"
+                    description="A simpler way to understand MongoDB Trigger."
+                    link="https://medium.com/@mdirfankhan98455/what-is-mongodb-trigger-f8828397ccd0"
+                    isDarkMode={isDarkMode}
+                  />
+                  <Blogs
+                    title="Component LifeCycle with useEffect Hook in React Js"
+                    description="The simple way to understand Lifecycle with the hook."
+                    link="https://medium.com/@mdirfankhan98455/component-lifecycle-with-useeffect-hook-in-react-js-293d1b431e1a"
+                    isDarkMode={isDarkMode}
+                  />
+                </OtherDetails>
+              </DetailBox>
+              <SkillContainer isDarkMode={isDarkMode}>
+                <Header> SKILLS </Header>
+                <SkillBox>
+                  {skillArr.map((val, index) => (
+                    <Tag skill={val} key={index} />
+                  ))}
+                </SkillBox>
+              </SkillContainer>
+            </Container>
+          </MainContainer>
           <Container>
-            <ProfileBox>
-              <Card />
-            </ProfileBox>
-            <DetailBox>
-              <OtherDetails>
-                <Header> RECENTLY PUBLISHED </Header>
-                <Blogs
-                  title="What is MongoDB Trigger?"
-                  description="A simpler way to understand MongoDB Trigger."
-                  link="https://medium.com/@mdirfankhan98455/what-is-mongodb-trigger-f8828397ccd0"
-                />
-                <Blogs
-                  title="Component LifeCycle with useEffect Hook in React Js"
-                  description="The simple way to understand Lifecycle with the hook."
-                  link="https://medium.com/@mdirfankhan98455/component-lifecycle-with-useeffect-hook-in-react-js-293d1b431e1a"
-                />
-              </OtherDetails>
-            </DetailBox>
-            <SkillContainer>
-              <Header> SKILLS </Header>
-              <SkillBox>
-                <Tag skill="JavaScript" />
-                <Tag skill="React JS" />
-                <Tag skill="Redux / Redux Toolkit" />
-                <Tag skill="Bootstrap" />
-                <Tag skill="Git" />
-                <Tag skill="Figma" />
-                <Tag skill="Styled Components" />
-                <Tag skill="Node JS" />
-                <Tag skill="Express JS" />
-                <Tag skill="Mongo DB" />
-                <Tag skill="HTML" />
-                <Tag skill="CSS" />
-                <Tag skill="JQuery" />
-                <Tag skill="Rest API" />
-                <Tag skill="Adobe XD" />
-              </SkillBox>
-            </SkillContainer>
+            {/* <Header style={{ color: "black" }}> Projects </Header> */}
+
+            <Projects />
           </Container>
-        </MainContainer>
+        </div>
       )}
     </React.Fragment>
   );
 }
 
 const MainContainer = styled.div`
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   color: #fff;
-  background: -webkit-linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%),
+  ${({ isDarkMode }) =>
+    isDarkMode
+      ? // ? `background-image: url(${Black})`
+        `background-color: #121212`
+      : `background: linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%),
+    radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%)`};
+  /* background-color: #454545; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: -webkit-linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%),
     -webkit-radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%);
   background: -o-linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%),
     -o-radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%);
   background: -moz-linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%),
-    -moz-radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%);
-  background: linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%),
-    radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
+    -moz-radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%); */
   @media (max-width: 844px) {
     height: 100%;
   }
@@ -145,22 +173,17 @@ const SkillContainer = styled.div`
   border-radius: 15px;
   padding: 10px;
   overflow-y: scroll;
+  margin-top: 10px;
 
   @media (max-width: 667px) {
     height: 100%;
     color: #fff;
-    background: -webkit-linear-gradient(
-        110deg,
-        #a60af3 40%,
-        rgba(0, 0, 0, 0) 30%
-      ),
-      -webkit-radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%);
-    background: -o-linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%),
-      -o-radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%);
-    background: -moz-linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%),
-      -moz-radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%);
-    background: linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%),
-      radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%);
+    background-color: rgba(255, 255, 255, 0.15);
+    ${({ isDarkMode }) =>
+      isDarkMode
+        ? `background-image: url(${Black})`
+        : `background: linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%),
+    radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%)`};
   }
 `;
 const SkillBox = styled.div`

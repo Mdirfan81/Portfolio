@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Tag = ({ skill }) => {
-  var randomColor = Math.floor(Math.random() * 16777215).toString(16);
+  var randomColor = Math.floor(Math.random() * 656777215).toString(16);
 
   return (
     <TagContainer style={{ background: `#${randomColor}` }}>

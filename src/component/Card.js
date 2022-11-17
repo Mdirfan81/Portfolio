@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import Lottie from "react-lottie";
+
 import "./Card.css";
+
 import { FaLinkedin, FaGithubAlt, FaTwitterSquare } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { IoNewspaper } from "react-icons/io5";
 import { RiMediumLine } from "react-icons/ri";
-import styled from "styled-components";
+import { FiSun, FiMoon } from "react-icons/fi";
 
-const Card = () => {
+import styled, { keyframes } from "styled-components";
+import darkMode from "../images/darkMode.json";
+
+const Card = ({ isDarkMode, handleMode }) => {
   return (
     <div className="card-Wrapper">
       <ImageContainer>
@@ -17,6 +23,7 @@ const Card = () => {
             <CustomCardDescription>Developer</CustomCardDescription>
           </CustomCardContent>
         </CustomCard>
+
         <ul className="ul">
           <li>
             <a target="_blank" href="https://in.linkedin.com/in/mdirfankhandev">
@@ -38,6 +45,16 @@ const Card = () => {
               <MdEmail size="30" className="icon" />
             </a>
           </li>
+          <li>
+            <div onClick={handleMode}>
+              {isDarkMode ? (
+                // console.log(isDarkMode)
+                <DarkMode size="30"></DarkMode>
+              ) : (
+                <FiMoon size="30" />
+              )}
+            </div>
+          </li>
         </ul>
       </ImageContainer>
 
@@ -46,7 +63,7 @@ const Card = () => {
           className="link"
           target="_blank"
           // href="https://drive.google.com/file/d/1bHY8BtEG9xz9FiF7Vi-SJyJy9I0xdsil/view?usp=sharing"
-          href="https://drive.google.com/file/d/1WHlrQuT8nVcJE6UIthERZRe1dg4UZlFk/view?usp=sharing"
+          href="https://drive.google.com/file/d/1BjCOlbRDwyF6i6C0wvQN9O4OeSWCbNkn/view"
         >
           <IoNewspaper size="20" />
           <span>Resume</span>
@@ -134,4 +151,16 @@ const CustomCardDescription = styled.p`
   transition: opcaity 0.5s;
   color: black;
 `;
+
+const rotateSun = keyframes`
+ from { transform:rotate(0deg) }
+ 
+ to { transform:rotate(360deg) }
+`;
+const DarkMode = styled(FiSun)`
+  &:hover {
+    animation: 2s linear ${rotateSun} infinite;
+  }
+`;
+
 export default Card;

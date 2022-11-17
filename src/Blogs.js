@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-const Blogs = ({ title, description, link }) => {
+const Blogs = ({ title, description, link, isDarkMode }) => {
   return (
-    <Container>
-      <Title>{title}</Title>
-      <Discription>{description}</Discription>
+    <Container isDarkMode={isDarkMode}>
+      <Title isDarkMode={isDarkMode}> {title}</Title>
+      <Discription isDarkMode={isDarkMode}>{description}</Discription>
       <Link target="_blank" href={link}>
         👉 Read more
       </Link>
@@ -23,13 +23,17 @@ const Container = styled.div`
   margin-top: 5px;
   display: block;
   overflow: hidden;
+  ${({ isDarkMode }) => (isDarkMode ? `background-color: #737373` : null)};
 `;
 const Title = styled.h2`
-  color: black;
+  ${({ isDarkMode }) => (isDarkMode ? `color: white;` : `color: black;`)};
+  /* color: white; */
+  /* color: black; */
   margin: 3px;
 `;
 const Discription = styled.p`
-  color: black;
+  ${({ isDarkMode }) => (isDarkMode ? `color: white;` : `color: black;`)};
+  /* color: black; */
   overflow-wrap: break-word;
   word-wrap: break-word;
   hyphens: auto;
