@@ -27,6 +27,7 @@ img {
 .card-Contant {
   display: flex;
   justify-content: center;
+  font-family: "Montserrat", sans-serif;
 }
 .section-1 {
   display: inline-block;
@@ -59,6 +60,7 @@ img {
 .link > span {
   margin: 5px;
   letter-spacing: 3px;
+  font-family: "Roboto Mono", monospace;
 }
 .section-2 {
   display: flex;
@@ -111,4 +113,9 @@ img {
   cursor: pointer;
   color: red;
   transform: scale(1.5);
+}
+
+h1,
+p {
+  font-family: "Roboto Mono", monospace;
 }

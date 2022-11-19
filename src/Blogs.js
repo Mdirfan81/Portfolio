@@ -23,22 +23,22 @@ const Container = styled.div`
   margin-top: 5px;
   display: block;
   overflow: hidden;
+
   ${({ isDarkMode }) => (isDarkMode ? `background-color: #737373` : null)};
 `;
 const Title = styled.h2`
   ${({ isDarkMode }) => (isDarkMode ? `color: white;` : `color: black;`)};
-  /* color: white; */
-  /* color: black; */
+  font-family: "Roboto Mono", monospace;
+
   margin: 3px;
 `;
 const Discription = styled.p`
   ${({ isDarkMode }) => (isDarkMode ? `color: white;` : `color: black;`)};
-  /* color: black; */
   overflow-wrap: break-word;
   word-wrap: break-word;
   hyphens: auto;
   padding: 4px;
-  font-weight: 700;
+  font-family: "Roboto Mono", monospace;
 `;
 const Link = styled.a`
   color: black;
@@ -46,6 +46,8 @@ const Link = styled.a`
   position: relative;
   top: 8px;
   float: right;
+  font-family: "Roboto Mono", monospace;
+
   font-weight: 700;
   color: blue;
   text-decoration: none;

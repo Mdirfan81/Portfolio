@@ -10,7 +10,6 @@ const Tag = ({ skill }) => {
     </TagContainer>
   );
 };
-//   <span> 80%</span>
 
 const TagContainer = styled.div`
   width: auto;
@@ -24,25 +23,14 @@ const TagContainer = styled.div`
   justify-content: center;
   align-items: center;
   letter-spacing: 2px;
-  /* border: 5px linear-gradient(to right, red, orange); */
-
+  transition: 0.5s ease-in;
   &:hover {
     border: 1px;
     transform: scale(1.2);
   }
-  /* span {
-    display: none;
-    font-weight: bold;
-    transition: ease-in-out 1s;
-  }
-  span::before {
-    content: " * ";
-  }
-
-  &:hover span {
-    display: block;
-  } */
 `;
-const TagName = styled.h4``;
+const TagName = styled.h4`
+  font-family: "Roboto Mono", monospace;
+`;
 
 export default Tag;

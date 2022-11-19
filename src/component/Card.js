@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Lottie from "react-lottie";
 
 import "./Card.css";
 
@@ -10,7 +9,6 @@ import { RiMediumLine } from "react-icons/ri";
 import { FiSun, FiMoon } from "react-icons/fi";
 
 import styled, { keyframes } from "styled-components";
-import darkMode from "../images/darkMode.json";
 
 const Card = ({ isDarkMode, handleMode }) => {
   return (
@@ -48,7 +46,6 @@ const Card = ({ isDarkMode, handleMode }) => {
           <li>
             <div onClick={handleMode}>
               {isDarkMode ? (
-                // console.log(isDarkMode)
                 <DarkMode size="30"></DarkMode>
               ) : (
                 <FiMoon size="30" />
@@ -62,7 +59,6 @@ const Card = ({ isDarkMode, handleMode }) => {
         <a
           className="link"
           target="_blank"
-          // href="https://drive.google.com/file/d/1bHY8BtEG9xz9FiF7Vi-SJyJy9I0xdsil/view?usp=sharing"
           href="https://drive.google.com/file/d/1BjCOlbRDwyF6i6C0wvQN9O4OeSWCbNkn/view"
         >
           <IoNewspaper size="20" />
@@ -71,7 +67,7 @@ const Card = ({ isDarkMode, handleMode }) => {
       </div>
       <div className="card-Contant">
         <div className="section-3 card-Contant">
-          <div className="About-Section">
+          <div className="SectionAbout">
             <h1 style={{ margin: "0px 0px 10px 0px" }}>About</h1>
             <p>
               I am a Full-Stack developer with a particular interest in making
@@ -127,6 +123,7 @@ const CustomCardContent = styled.div`
 `;
 const CustomCardTitle = styled.h3`
   color: black;
+  font-family: "Roboto Mono", monospace;
   line-height: 15px;
   font-size: 25px;
   font-weight: 900;
@@ -148,6 +145,7 @@ const CustomCardDescription = styled.p`
   font-weight: 500;
   font-size: 18px;
   opacity: 1;
+  font-family: "Roboto Mono", monospace;
   transition: opcaity 0.5s;
   color: black;
 `;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import "./App.css";
 import Black from "./images/Black.jpg";
@@ -13,7 +13,7 @@ import Projects from "./component/Projects";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
   let skillArr = [
     "JavaScript",
     "React JS",
@@ -42,6 +42,12 @@ function App() {
       clearTimeout(timer);
     };
   }, []);
+
+  function scrollDown(e) {
+    e.preventDefault();
+
+    window.scroll(0, 1000);
+  }
   function handleMode() {
     setIsDarkMode((prev) => !prev);
   }
@@ -50,7 +56,11 @@ function App() {
       {isLoading ? (
         <AnimationText />
       ) : (
-        <div>
+        <div
+          style={{
+            position: "relative",
+          }}
+        >
           <MainContainer isDarkMode={isDarkMode}>
             <Container>
               <ProfileBox>
@@ -82,12 +92,16 @@ function App() {
                 </SkillBox>
               </SkillContainer>
             </Container>
+            <ScrollContainer>
+              <ScrollBox onClick={scrollDown}>
+                <ScrollCircle />
+              </ScrollBox>
+            </ScrollContainer>
           </MainContainer>
-          <Container>
-            {/* <Header style={{ color: "black" }}> Projects </Header> */}
 
-            <Projects />
-          </Container>
+          <ProjectContainer isDarkMode={isDarkMode}>
+            <Projects isDarkMode={isDarkMode} />
+          </ProjectContainer>
         </div>
       )}
     </React.Fragment>
@@ -95,25 +109,20 @@ function App() {
 }
 
 const MainContainer = styled.div`
-  height: 100%;
+  position: relative;
+  height: 100vh;
   width: 100vw;
   color: #fff;
+  font-family: "Roboto Mono", monospace;
+
   ${({ isDarkMode }) =>
     isDarkMode
-      ? // ? `background-image: url(${Black})`
-        `background-color: #121212`
+      ? `background-color: #121212`
       : `background: linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%),
     radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%)`};
-  /* background-color: #454545; */
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background: -webkit-linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%),
-    -webkit-radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%);
-  background: -o-linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%),
-    -o-radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%);
-  background: -moz-linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%),
-    -moz-radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%); */
   @media (max-width: 844px) {
     height: 100%;
   }
@@ -122,7 +131,9 @@ const MainContainer = styled.div`
 const Header = styled.h1`
   letter-spacing: 3px;
   font-size: 40px;
-  font-weight: bolder;
+  font-family: "Roboto Mono", monospace;
+
+  font-weight: 700;
 `;
 const ProfileBox = styled.div`
   width: 92%;
@@ -189,22 +200,89 @@ const SkillContainer = styled.div`
 const SkillBox = styled.div`
   display: flex;
   flex-wrap: wrap;
+`;
 
-  /* @media (max-width: 667px) {
-    color: #fff;
-    background: -webkit-linear-gradient(
-        110deg,
-        #a60af3 40%,
-        rgba(0, 0, 0, 0) 30%
-      ),
-      -webkit-radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%);
-    background: -o-linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%),
-      -o-radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%);
-    background: -moz-linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%),
-      -moz-radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%);
-    background: linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%),
-      radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%);
-  } */
+const ProjectContainer = styled.div`
+  width: 100vw;
+  height: 800px;
+  color: #fff;
+  font-family: "Roboto Mono", monospace;
+
+  ${({ isDarkMode }) =>
+    isDarkMode
+      ? `background-color: #121212`
+      : `background: linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%),
+    radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%)`};
+  @media (max-width: 1452px) {
+    height: 72rem;
+  }
+  @media (max-width: 1186px) {
+    height: 95rem;
+  }
+  @media (max-width: 899px) {
+    height: 115rem;
+  }
+  @media (max-width: 683px) {
+    height: 220rem;
+  }
+`;
+
+const ScrollContainer = styled.div`
+  position: absolute;
+  bottom: -20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  /* 
+  ${({ isDarkMode }) =>
+    isDarkMode
+      ? `background-color: #121212`
+      : `background: linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%),
+    radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%)`}; */
+
+  @media (max-width: 1643px) {
+    bottom: -6px;
+  }
+  @media (max-width: 850px) {
+    display: none;
+  }
+`;
+const ScrollBox = styled.div`
+  width: 30px;
+  height: 60px;
+  border: 2px solid white;
+  margin: 7px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+`;
+const scrollAnimation = keyframes`
+ 0% { 
+top:7px
+  }
+ 30% { top:15px
+ }
+ 40% { top:18px
+ }
+ 100% { top:40px
+ }
+`;
+
+const ScrollCircle = styled.div`
+  position: absolute;
+  width: 23px;
+  height: 23px;
+  background-color: white;
+  border-radius: 50%;
+  margin: 3px;
+  animation: ${scrollAnimation} 1s infinite ease-in-out;
+
+  @media (max-width: 683px) {
+    height: 220rem;
+  }
 `;
 
 export default App;
